@@ -1,0 +1,14 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DSH</title>
+<style>html,body{margin:0;height:100%;background:#fbf5ec;color:#8a6f6a;
+ font:15px/1.7 -apple-system,"PingFang SC",sans-serif}
+.w{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;padding:24px;box-sizing:border-box}
+.d{width:32px;height:32px;border-radius:50%;border:2px dashed rgba(190,140,130,.55);animation:s 1.1s linear infinite}
+@keyframes s{to{transform:rotate(360deg)}}</style></head><body>
+<div class="w"><div class="d"></div><div id="s">正在打开 DSH…</div></div>
+<script>
+fetch('latest.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()})
+ .then(function(d){ if(!d||!d.dsh) throw new Error('没有地址'); location.replace(d.dsh); })
+ .catch(function(e){ document.getElementById('s').textContent='入口取不到：'+e.message; });
+</script></body></html>
